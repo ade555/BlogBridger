@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from django.db import transaction
-from rest_framework.authtoken.models import Token
 
 from .models import User
 from posts.serializers import PostSerializer
@@ -19,7 +18,6 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data["password"]
         user.set_password(password)
         user.save()
-        Token.objects.create(user=user)
         return user
     
     def to_representation(self, instance):
