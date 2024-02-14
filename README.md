@@ -27,23 +27,28 @@ The following instructions will help you install WhisperTime on your local syste
 ### Installation and Setup
 1. Install the package with:
 
-```bash
-pip install drfblogbridger
-```
+    ```bash
+    pip install drfblogbridger
+    ```
+
 2. Include the following settings in your `settings.py` file:
-```python
-INSTALLED_APPS = [
+    ```python
+    INSTALLED_APPS = [
 
-    'posts',
-    'rest_framework',
-]
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framework.permissions.IsAuthenticated',
+        'posts',
+        'rest_framework',
     ]
-}
-```
+
+    REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES':[
+            'rest_framework.permissions.IsAuthenticated',
+        ]
+    }
+    ```
+3. Include the following in your project level `urls.py` file:
+    ```python
+    path('api/posts/', include('posts.urls')),
+    ```
 
 <!-- 1. Clone the repository
 
