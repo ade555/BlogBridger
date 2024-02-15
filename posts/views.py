@@ -14,12 +14,15 @@ class PostListCreateView(generics.GenericAPIView):
     def get_queryset(self):
         queryset = Post.objects.all()
         author = self.request.query_params.get('author')
-        if author is not None:
+        title = self.request.query_params.get('title')
+        if author:
             queryset = queryset.filter(author__username=author)
+        if title:
+            queryset = queryset.filter(post_title__icontains=title)
         return queryset
 
     def get(self, request:Request):
-         queryset = self.get_queryset
+         queryset = self.get_queryset()
          serializer = self.serializer_class(instance=queryset, many=True, context={'request': request})
 
          response = {
