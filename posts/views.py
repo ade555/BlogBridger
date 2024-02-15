@@ -11,9 +11,16 @@ from core.permissions import IsPostOwnerOrReadOnly
 class PostListCreateView(generics.GenericAPIView):
     serializer_class = PostSerializer
 
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        author = self.request.query_params.get('author')
+        if author is not None:
+            queryset = queryset.filter(author__username=author)
+        return queryset
+
     def get(self, request:Request):
-         posts = Post.objects.all()
-         serializer = self.serializer_class(instance=posts, many=True, context={'request': request})
+         queryset = self.get_queryset
+         serializer = self.serializer_class(instance=queryset, many=True, context={'request': request})
 
          response = {
              "message":"successful",
