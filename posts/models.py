@@ -13,6 +13,9 @@ class Post(models.Model):
     post_body = models.TextField()
     created_at = models.DateField(auto_now=True, auto_now_add=False)
     author = models.ForeignKey(User, related_name="posts", on_delete=models.SET(get_default_user))
+
+    class Meta:
+        ordering = ['-id']
     
     def __str__(self) -> str:
         return self.post_title

@@ -10,7 +10,6 @@ from core.permissions import IsPostOwnerOrReadOnly
 
 class PostListCreateView(generics.GenericAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request:Request):
          posts = Post.objects.all()

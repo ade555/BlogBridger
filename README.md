@@ -41,7 +41,7 @@ The following instructions will help you install WhisperTime on your local syste
 
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES':[
-            'rest_framework.permissions.IsAuthenticated',
+            'rest_framework.permissions.IsAuthenticatedOrReadOnly',
         ]
     }
     ```
