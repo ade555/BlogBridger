@@ -21,6 +21,16 @@ class PostSerializer(serializers.ModelSerializer):
         validated_data['author'] = user
         return super().create(validated_data)
 
+class PostUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['post_title', 'post_body']
+
+    def validate(self, attrs):
+        if not any(attrs.values()):
+            raise serializers.ValidationError("At least one field (post_title or post_body) must be provided for update")
+        return super().validate(attrs)
+
 class CommentSerializer(serializers.ModelSerializer):
     comment_author = PostAUthorSerializer(read_only=True)
     class Meta:

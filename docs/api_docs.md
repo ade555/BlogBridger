@@ -101,35 +101,48 @@ The following endpoints are related to performing CRUD operations on post object
 }
 ```
 - `400 Bad Request`: Invalid input or malformed request. Check your request body and ensure you're not skipping any fields or violating any rules.
-- `401 Unauthorized`: 
+- `401 Unauthorized`: You're unauthorized to perfrom the action. Ensure you include the authentication token in your request header.
 - `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
 
 ---
 
 ### 2. Update Post
 
-- **Endpoint**: `/login/`
-- **HTTP Method**: `POST`
-- **Description**: Logs a user into their account after verifying their credentials
+- **Endpoint**: `{post_id}/`
+- **HTTP Method**: `PATCH`
+- **Description**: Updates a specific post
 
-| Parameter | Type | Description                      | Required |
+| Parameter | Data Type | Description                      | Required |
 |-----------|------|----------------------------------|----------|
+| post_title | char | The updated title. Maximum value is 50 characters | No |
+| post_body | varchar | The updated content of the post | No |
 
+**NOTE**: Although both parameters are optional, you have to provide at least one of them to use this endpoint.
 
 **Request Body**:
 
 ```json
-
+{
+    "post_title":"Updated title"
+}
 ```
 
 **Responses**:
 
-- `201 Created`: Successfully logs the user into the app and returns token key.
+- `200 OK`: Indicates a successful update operation.
+- `400 Bad Request`: Invalid input or malformed request. Ensure your request body is correct. Here's a simple example:
 ```json
-
+{
+    "message": "failed",
+    "info": {
+        "non_field_errors": [
+            "At least one field (post_title or post_body) must be provided for update"
+        ]
+    }
+}
 ```
-- `400 Bad Request`: Invalid input or malformed request.
-- `500 Internal Server Error`: Unexpected server error.
+- `401 Unauthorized`: You're unauthorized to perform this action. ENsure you have thr right authrntication token. Only the author of a post can update it. 
+- `500 Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
 ---
 
 ### 3. Retrieve Post

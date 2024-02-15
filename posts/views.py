@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import get_object_or_404
 
 from .models import Post, Comment
-from .serializers import PostSerializer, CommentSerializer, PostDetailSerializer
+from .serializers import PostSerializer, CommentSerializer, PostDetailSerializer, PostUpdateSerializer
 from core.permissions import IsPostOwnerOrReadOnly
 
 class PostListCreateView(generics.GenericAPIView):
@@ -45,11 +45,11 @@ class RetrieveUpdateDeletePostView(generics.GenericAPIView):
     serializer_class = PostDetailSerializer
     permission_classes = [IsPostOwnerOrReadOnly, IsAuthenticatedOrReadOnly]
 
-    def put(self, request:Request, post_id:int):
+    def patch(self, request:Request, post_id:int):
         post = get_object_or_404(Post, pk=post_id)
         self.check_object_permissions(request, post)
 
-        serializer = PostSerializer(instance=post, data=request.data)
+        serializer = PostUpdateSerializer(instance=post, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
@@ -57,7 +57,7 @@ class RetrieveUpdateDeletePostView(generics.GenericAPIView):
                 "message":"successful",
                 "data": serializer.data
             }
-            return Response(data=response, status=status.HTTP_201_CREATED)
+            return Response(data=response, status=status.HTTP_200_OK)
         
         response = {
                 "message":"failed",
