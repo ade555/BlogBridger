@@ -115,8 +115,17 @@ The following endpoints are related to performing CRUD operations on post object
 - **Description**: Returns a list of available posts
 - **Permission Level**: Anyone can call this endpoint
 
-**Request Body**
-This endpoint does not require any request body.
+**Query String Parameters**
+| Parameter | Data Type    | Description | Required |
+|-----------|---------|------------------|----------|
+| author | string | Username of a specific author. Including this parameter will return all posts made by the user specified. | No |
+| title | string | The title of a specific post. Including this parameter will return posts that contain the exact string or something simiar | No |
+
+
+**Example Request**
+```bash
+http://127.0.0.1:8000/api/posts/list/?author=johnny
+```
 
 **Response**
 - `200 OK`: Indicates that the operation was successful. Here is the typical response body you should expect:
@@ -125,29 +134,16 @@ This endpoint does not require any request body.
         "message": "successful",
         "data": [
             {
-                "id": 3,
+                "id": 9,
                 "author": {
-                    "id": 1,
+                    "id": 8,
                     "first_name": "ade",
                     "last_name": "Tom",
-                    "username": "superr",
-                    "email": "tomm@ade.com"
+                    "username": "johnny",
+                    "email": "tommm@ade.com"
                 },
                 "post_title": "New post again",
                 "post_body": "test body",
-                "created_at": "2024-02-15"
-            },
-            {
-                "id": 2,
-                "author": {
-                    "id": 1,
-                    "first_name": "ade",
-                    "last_name": "Tom",
-                    "username": "superr",
-                    "email": "tomm@ade.com"
-                },
-                "post_title": "Updated title",
-                "post_body": "Updated body",
                 "created_at": "2024-02-15"
             }
         ]
