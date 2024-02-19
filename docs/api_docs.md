@@ -1,36 +1,42 @@
 # API Overview
 
 ## Index
-
+- [Base URL](#base-url-apiposts)
 - [Posts](#posts)
-    - [Base URL](#base-url-apiposts)
-    - [Parameters](#parameters)
-    - [General Response Schema](#response-schema)
-    - [Endpoints](#endpoints)
+    - [Parameters (Posts)](#parameters-posts)
+    - [General Response Schema (Posts)](#general-response-schema-posts)
+    - [Endpoints (Posts)](#endpoints-posts)
         - [Create Post](#1-create-post)
         - [Get All Posts](#2-get-all-posts)
         - [Update Post](#3-update-post)
         - [Retrieve Post](#4-retrieve-post)
         - [Delete Post](#5-delete-post)
+- [Comments](#comments)
+    - [Parameters (Comments)](#parameters-comments)
+    - [General Response Schema (Comments)](#general-response-schema-comments)
+    - [Endpoints (Comments)](#endpoints-comments)
+        - [Create Comment](#1-create-comment)
+        - [Get Comments Under a Specific Post](#2-get-comments-under-a-specific-post)
 
+# Base URL: `api/posts/`
+---
 # Posts
 
 The endpoints under the posts API allow users to Create, Update, Delete, and Retrieve posts.
 
-## Base URL: `api/posts/`
 
-## Parameters
+## Parameters (Posts)
 The following defines parameters that are general to all or most of the endpoints under the post API
 
 **Path Parameters**
 | Parameter | Data Type    | Description                              | Required |
 |-----------|---------|------------------------------------------|----------|
-| id        | integer | The unique ID associated with each post. | Yes      |
+| post_id        | integer | The unique ID associated with each post. | Yes      |
 
 ---
 
-## General Response Schema
-The following table explains the most common response fields you will come across under the post api. Unique response fields may be documented alngside the specific endpoint(s) they apply to.
+## General Response Schema (Posts)
+The following table explains the most common response fields you will come across under the post API. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
 
 | Response field | Data Type | Description |
 |----------------|---------|---------------|
@@ -48,7 +54,7 @@ The following table explains the most common response fields you will come acros
 | data/author/**email** | varchar | Author's unique email |
 | info | object or string | Usually an object, but can sometimes be a string. It returns information about failed requests |
 
-## Endpoints:
+## Endpoints (Posts):
 The following endpoints are related to performing CRUD operations on post objects.
 
 ### 1. Create Post
@@ -283,3 +289,130 @@ This endpoint does not require a request body.
 - `204 No Content`: This indicates that the post has been deleted.
 - `404 Not Found`: This means there is not post with the specified `{post_id}`. Check the `{post_id}` path parameter.
 - `5xx Internal server error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+---
+
+# Comments
+The comments endpoints provide information about comments available under a post. It allows you to creat comments for a specific post and retrieve all the commenta available under a specific post.
+
+## Parameters (Comments)
+The following defines parameters that are general to all or most of the endpoints under the post API
+
+**Path Parameters**
+| Parameter | Data Type    | Description                              | Required |
+|-----------|---------|------------------------------------------|----------|
+| post_id        | integer | The unique ID associated with each post. | Yes      |
+
+
+## General Response Schema (Comments)
+The following table explains the most common response fields you will come across under the post api. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
+
+| Response field | Data Type | Description |
+|----------------|---------|---------------|
+|message | string | Indicates the status of the request made. It can either be successful or failed |
+| data | object | Contains the resource requested |
+| data/**id** | integer | The unique ID of a comment |
+| data/**comment_author** | object | Contains details such as names, and email about the author of the comment. |
+| data/**comment** | string | The comment text. | 
+| data/**created_at** | date field | Indicates when the comment was made |
+
+## Endpoints (Comments):
+The following endpoints will help you interact with the comment API.
+
+**Path Parameters**
+| Parameter | Data Type    | Description                              | Required |
+|-----------|---------|------------------------------------------|----------|
+| post_id        | integer | The unique ID associated with each post. | Yes      |
+
+### 1. Create Comment
+- **Endpoint**: `{post_id}/comment`
+- **HTTP Method**: `POST`
+- **Description**: Creates a new comment under the post with the given `{post_id}`
+- **Permission Level**: Only logged in users can create comments
+
+**Headers**
+| Key          | Data Type  | Value                                                          |
+|---------------|-----------|----------------------------------------------------------------|
+| Authorization | String    | Set the value of this to the user's access/authentication token|
+
+**Request Body**:
+
+```json
+{
+    "comment":"This is very good!"
+}
+```
+**Request Body Definition**
+
+| Parameter | Data Type | Description                      | Required |
+|-----------|------|----------------------------------|----------|
+| comment | varchar | The user's comment text | Yes |
+
+
+**Responses**
+- `201 Created`: Indicates that you have created a response. Here is an example response:
+    ```json
+    {
+        "message": "successful",
+        "data": {
+            "id": 4,
+            "comment_author": {
+                "id": 2,
+                "first_name": "ade",
+                "last_name": "Tom",
+                "username": "johnny",
+                "email": "tommm@ade.com"
+            },
+            "comment": "This is very good!",
+            "created_at": "2024-02-19"
+        }
+    }
+    ```
+
+- `400 Bad Request`: Invalid input or malformed request. Check your request body and ensure you're not skipping any fields or violating any rules.
+- `401 Unauthorized`: You're unauthorized to perfrom the action. Ensure you include the authentication token in your request header.
+- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+
+---
+
+### 2. Get comments under a specific post
+- **Endpoint**: `{post_id}/comment`
+- **HTTP Method**: `GET`
+- **Description**: Retrieves all the comments under a post with the specific `{post_id}`
+- **Permission Level**: Anyone can view comments
+
+**Request Body**: This request has no body
+
+**Responses**
+- `200 OK`: Indicates that you have created a response. Here is an example response:
+    ```json
+    {
+        "message": "successful",
+        "data": [
+            {
+                "id": 1,
+                "comment_author": {
+                    "id": 1,
+                    "first_name": "ade",
+                    "last_name": "Tom",
+                    "username": "superr",
+                    "email": "tomm@ade.com"
+                },
+                "comment": "good post!",
+                "created_at": "2024-02-15"
+            },
+            {
+                "id": 2,
+                "comment_author": {
+                    "id": 1,
+                    "first_name": "ade",
+                    "last_name": "Tom",
+                    "username": "superr",
+                    "email": "tomm@ade.com"
+                },
+                "comment": "great post!",
+                "created_at": "2024-02-15"
+            }
+        ]
+    }
+    ```
+- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
