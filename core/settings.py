@@ -45,12 +45,11 @@ INSTALLED_APPS = [
 
     # myapps
     'blog_bridger_drf',
-    'users',
+    'accounts',
 
     # frameworks
     'rest_framework',
     'rest_framework_simplejwt',
-    "django_rename_app",
 ]
 
 MIDDLEWARE = [
@@ -136,7 +135,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "accounts.User"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[

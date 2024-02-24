@@ -35,7 +35,7 @@ The following instructions will help you install WhisperTime on your local syste
     ```python
     INSTALLED_APPS = [
 
-        'posts',
+        'blog_bridger_drf',
         'rest_framework',
     ]
 
@@ -47,7 +47,7 @@ The following instructions will help you install WhisperTime on your local syste
     ```
 3. Include the following in your project level `urls.py` file:
     ```python
-    path('api/posts/', include('posts.urls')),
+    path('api/posts/', include('blog_bridger_drf.urls')),
     ```
 
 <!-- 1. Clone the repository
