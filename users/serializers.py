@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.db import transaction
 
 from .models import User
-from posts.serializers import PostSerializer
+from blog_bridger_drf.serializers import PostSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(min_length=8, write_only=True)

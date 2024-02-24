@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # myapps
-    'posts',
+    'blog_bridger_drf',
     'users',
 
     # frameworks

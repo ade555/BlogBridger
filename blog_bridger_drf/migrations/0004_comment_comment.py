@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0003_remove_comment_commenter_alter_comment_post'),
+        ('blog_bridger_drf', '0003_remove_comment_commenter_alter_comment_post'),
     ]
 
     operations = [
