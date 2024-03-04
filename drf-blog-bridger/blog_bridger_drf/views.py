@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer, PostDetailSerializer, PostUpdateSerializer
-from core.permissions import IsPostOwnerOrReadOnly
+from .permissions import IsPostOwnerOrReadOnly
 
 class PostListCreateView(generics.GenericAPIView):
     serializer_class = PostSerializer

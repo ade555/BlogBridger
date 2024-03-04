@@ -1,6 +1,11 @@
 __pycache__/
 env/
+venv/
 .env
 TODO
 db.sqlite3
 accounts/
+twinetoken.txt
+dist/
+*egg-info/
+.vscode

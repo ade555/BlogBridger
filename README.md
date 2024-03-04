@@ -28,7 +28,7 @@ The following instructions will help you install WhisperTime on your local syste
 1. Install the package with:
 
     ```bash
-    pip install drfblogbridger
+    pip install drf_blog_bridger
     ```
 
 2. Include the following settings in your `settings.py` file:
