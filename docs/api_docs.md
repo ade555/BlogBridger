@@ -1,6 +1,6 @@
 # API Overview
 
-## Index
+<!-- ## Index
 - [Base URL](#base-url-apiposts)
 - [Posts](#posts)
     - [Parameters (Posts)](#parameters-posts)
@@ -16,7 +16,7 @@
     - [General Response Schema (Comments)](#general-response-schema-comments)
     - [Endpoints (Comments)](#endpoints-comments)
         - [Create Comment](#1-create-comment)
-        - [Get Comments Under a Specific Post](#2-get-comments-under-a-specific-post)
+        - [Get Comments Under a Specific Post](#2-get-comments-under-a-specific-post) -->
 
 # Base URL: `api/posts/`
 ---
@@ -29,9 +29,11 @@ The endpoints under the posts API allow users to Create, Update, Delete, and Ret
 The following defines parameters that are general to all or most of the endpoints under the post API
 
 **Path Parameters**
-| Parameter | Data Type    | Description                              | Required |
-|-----------|---------|------------------------------------------|----------|
-| post_id        | integer | The unique ID associated with each post. | Yes      |
+<!-- |parameter|Data Type|Description|Required| -->
+
+| Parameter |Data Type| Description| Required |
+|-----------|---------|------------|----------|
+| post_id| integer | The unique ID associated with each post. | Yes|
 
 ---
 
