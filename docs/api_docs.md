@@ -18,18 +18,17 @@
         - [Create Comment](#1-create-comment)
         - [Get Comments Under a Specific Post](#2-get-comments-under-a-specific-post) -->
 
-# Base URL: `api/posts/`
+## Base URL: `api/posts/`
 ---
-# Posts
+## Posts
 
 The endpoints under the posts API allow users to Create, Update, Delete, and Retrieve posts.
 
 
-## Parameters (Posts)
+### Parameters (Posts)
 The following defines parameters that are general to all or most of the endpoints under the post API
 
 **Path Parameters**
-<!-- |parameter|Data Type|Description|Required| -->
 
 | Parameter |Data Type| Description| Required |
 |-----------|---------|------------|----------|
@@ -37,7 +36,7 @@ The following defines parameters that are general to all or most of the endpoint
 
 ---
 
-## General Response Schema (Posts)
+### General Response Schema (Posts)
 The following table explains the most common response fields you will come across under the post API. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
 
 | Response field | Data Type | Description |
@@ -56,10 +55,10 @@ The following table explains the most common response fields you will come acros
 | data/author/**email** | varchar | Author's unique email |
 | info | object or string | Usually an object, but can sometimes be a string. It returns information about failed requests |
 
-## Endpoints (Posts):
+### Endpoints (Posts):
 The following endpoints are related to performing CRUD operations on post objects.
 
-### 1. Create Post
+#### 1. Create Post
 
 - **Endpoint**: `create/`
 - **HTTP Method**: `POST`
@@ -117,7 +116,7 @@ The following endpoints are related to performing CRUD operations on post object
 
 ---
 
-### 2. Get All Posts
+#### 2. Get All Posts
 - **Endpoint**: `list/`
 - **HTTP Method**: `GET`
 - **Description**: Returns a list of available posts
@@ -162,7 +161,7 @@ You can get the response definition from the [general response schema](#general-
 
 ---
 
-### 3. Update Post
+#### 3. Update Post
 
 - **Endpoint**: `{post_id}/`
 - **HTTP Method**: `PATCH`
@@ -210,7 +209,7 @@ You can get the response definition from the [general response schema](#general-
 - `5xx Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
 ---
 
-### 4. Retrieve Post
+#### 4. Retrieve Post
 - **Endpoint**: `{post_id}`
 - **HTTP Method**: `GET`
 - **Description**: Returns the details of the post with the specified `{post_id}`, including the author and comments under the post.
@@ -272,7 +271,7 @@ The post response is defined in the [general response schema](#general-response-
 
 ---
 
-### 5. Delete Post
+#### 5. Delete Post
 - **Endpoint**: `{post_id}`
 - **HTTP Method**: `DELETE`
 - **Description**: Deletes the post with the specified `{post_id}`.
@@ -293,10 +292,10 @@ This endpoint does not require a request body.
 - `5xx Internal server error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
 ---
 
-# Comments
+## Comments
 The comments endpoints provide information about comments available under a post. It allows you to creat comments for a specific post and retrieve all the commenta available under a specific post.
 
-## Parameters (Comments)
+### Parameters (Comments)
 The following defines parameters that are general to all or most of the endpoints under the post API
 
 **Path Parameters**
@@ -305,7 +304,7 @@ The following defines parameters that are general to all or most of the endpoint
 | post_id        | integer | The unique ID associated with each post. | Yes      |
 
 
-## General Response Schema (Comments)
+### General Response Schema (Comments)
 The following table explains the most common response fields you will come across under the post api. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
 
 | Response field | Data Type | Description |
@@ -317,7 +316,7 @@ The following table explains the most common response fields you will come acros
 | data/**comment** | string | The comment text. | 
 | data/**created_at** | date field | Indicates when the comment was made |
 
-## Endpoints (Comments):
+### Endpoints (Comments):
 The following endpoints will help you interact with the comment API.
 
 **Path Parameters**
@@ -325,7 +324,7 @@ The following endpoints will help you interact with the comment API.
 |-----------|---------|------------------------------------------|----------|
 | post_id        | integer | The unique ID associated with each post. | Yes      |
 
-### 1. Create Comment
+#### 1. Create Comment
 - **Endpoint**: `{post_id}/comment`
 - **HTTP Method**: `POST`
 - **Description**: Creates a new comment under the post with the given `{post_id}`
@@ -376,7 +375,7 @@ The following endpoints will help you interact with the comment API.
 
 ---
 
-### 2. Get comments under a specific post
+#### 2. Get comments under a specific post
 - **Endpoint**: `{post_id}/comment`
 - **HTTP Method**: `GET`
 - **Description**: Retrieves all the comments under a post with the specific `{post_id}`

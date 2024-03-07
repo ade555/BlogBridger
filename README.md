@@ -1,8 +1,8 @@
-# Blog Bridger (WIP)
+# DRF Blog Bridger
 
 ## Introduction
 
-Blog Bridger is a simple tool that allows Djamgo Rest Framework Developers to set up a simple blog API without worrying about the underlying code. The tool takes care of things like CRUD operations for blog posts, as well as the comment feature for each post.
+DRF Blog Bridger is a simple tool that allows Django Rest Framework Developers to set up a simple blog API without worrying about the underlying code. The tool takes care of things like CRUD operations for blog posts, as well as the comment feature for each post.
 
 ## Table of Contents
 
@@ -16,11 +16,11 @@ Blog Bridger is a simple tool that allows Djamgo Rest Framework Developers to se
 
 ## Getting Started
 
-The following instructions will help you install WhisperTime on your local system and have it running.
+The following instructions will help you install DRF Blog Bridger on your local system and have it running. You can read the [full documentation on Read The Docs](https://drf-blog-bridger.readthedocs.io/en/latest/).
 
 ### Prerequisites
 
-- Python 3.10 or higher
+- Python 3.8 or higher
 - Pip
 - Django Rest Framework
 
@@ -50,42 +50,7 @@ The following instructions will help you install WhisperTime on your local syste
     path('api/posts/', include('blog_bridger_drf.urls')),
     ```
 
-<!-- 1. Clone the repository
-
-```
-git clone https://github.com/ade555/WhisperTime.git
-```
-
-2. Change directory to the project folder
-
-```
-cd WhisperTime
-```
-
-3. Create a virtual environment
-```
-python -m venv env
-```
-
-4. Install the project dependencies into your virtual environment
-
-```
-pip install -r requirements.txt
-```
-
-5. Generate a new secret key
-
-```
-python secret_key.py
-```
-
-6. Create an environment variable (`.env` file) and include the necessary information from the `.env_sample` file
-
-7. Open your CLI and start the project
-
-```
-python manage.py runserer
-``` -->
+4. Run `python manage.py migrate` to migrate the models into your database. You should read the [API reference](https://drf-blog-bridger.readthedocs.io/en/latest/api_docs/) to understand how the endpoints work.
 
 ## Contributing
 

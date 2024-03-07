@@ -1,9 +1,3 @@
-# DRF Blog Bridger
-
-## Introduction
-
-DRF Blog Bridger is a simple tool that allows Django Rest Framework Developers to set up a simple blog API without worrying about the underlying code. The tool takes care of things like CRUD operations for blog posts, as well as the comment feature for each post.
-
 ## Getting Started
 
 The following instructions will help you install Blog Bridger on your local system and have it running.
@@ -45,7 +39,3 @@ The following instructions will help you install Blog Bridger on your local syst
     ```
 
 4. Run `python manage.py migrate` to migrate the models into your database. You should read the [API reference](api_docs.md) to understand how the endpoints work.
-
-## Contributing
-
-Contributions are welcome! Feel free to open a pull request right away.
