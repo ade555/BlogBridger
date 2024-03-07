@@ -1,23 +1,5 @@
 # API Overview
 
-<!-- ## Index
-- [Base URL](#base-url-apiposts)
-- [Posts](#posts)
-    - [Parameters (Posts)](#parameters-posts)
-    - [General Response Schema (Posts)](#general-response-schema-posts)
-    - [Endpoints (Posts)](#endpoints-posts)
-        - [Create Post](#1-create-post)
-        - [Get All Posts](#2-get-all-posts)
-        - [Update Post](#3-update-post)
-        - [Retrieve Post](#4-retrieve-post)
-        - [Delete Post](#5-delete-post)
-- [Comments](#comments)
-    - [Parameters (Comments)](#parameters-comments)
-    - [General Response Schema (Comments)](#general-response-schema-comments)
-    - [Endpoints (Comments)](#endpoints-comments)
-        - [Create Comment](#1-create-comment)
-        - [Get Comments Under a Specific Post](#2-get-comments-under-a-specific-post) -->
-
 ## Base URL: `api/posts/`
 ---
 ## Posts
@@ -68,8 +50,8 @@ The following endpoints are related to performing CRUD operations on post object
 
 **Headers**
 
-| Key          | Data Type  | Value                                                          |
-|---------------|-----------|----------------------------------------------------------------|
+| Key | Data Type | Value  |
+|-----|-----------|--------|
 | Authorization | String    | Set the value of this to the user's access/authentication token|
 
 **Request Body**:
@@ -83,7 +65,7 @@ The following endpoints are related to performing CRUD operations on post object
 **Request Body Definition**
 
 | Parameter | Data Type | Description                      | Required |
-|-----------|------|----------------------------------|----------|
+|-----------|-----------|----------------------------------|----------|
 | post_title | char | The title of the new post. Maximum value is 50 characters | Yes |
 | post_body | varchar | The content of the new post | Yes |
 
@@ -123,8 +105,8 @@ The following endpoints are related to performing CRUD operations on post object
 - **Permission Level**: Anyone can call this endpoint
 
 **Query String Parameters**
-| Parameter | Data Type    | Description | Required |
-|-----------|---------|------------------|----------|
+| Parameter | Data Type | Description | Required |
+|-----------|-----------|-------------|----------|
 | author | string | Username of a specific author. Including this parameter will return all posts made by the user specified. | No |
 | title | string | The title of a specific post. Including this parameter will return posts that contain the exact string or something simiar | No |
 
@@ -170,13 +152,15 @@ You can get the response definition from the [general response schema](#general-
 
 **Headers**
 
-| Key          | Data Type  | Value                                                          |
-|---------------|-----------|----------------------------------------------------------------|
+| Key          | Data Type | Value   |
+|--------------|-----------|---------|
 | Authorization | String    | Set the value of this to the user's access/authentication token|
 
 
-| Parameter | Data Type | Description                      | Required |
-|-----------|------|----------------------------------|----------|
+**Parameters**
+
+| Parameter | Data Type | Description                 | Required |
+|-----------|-----------|-----------------------------|----------|
 | post_title | char | The updated title. Maximum value is 50 characters | No |
 | post_body | varchar | The updated content of the post | No |
 
@@ -210,7 +194,7 @@ You can get the response definition from the [general response schema](#general-
 ---
 
 #### 4. Retrieve Post
-- **Endpoint**: `{post_id}`
+- **Endpoint**: `{post_id}/`
 - **HTTP Method**: `GET`
 - **Description**: Returns the details of the post with the specified `{post_id}`, including the author and comments under the post.
 - **Permission Level**: Anyone can call this endpoint.
@@ -272,14 +256,14 @@ The post response is defined in the [general response schema](#general-response-
 ---
 
 #### 5. Delete Post
-- **Endpoint**: `{post_id}`
+- **Endpoint**: `{post_id}/`
 - **HTTP Method**: `DELETE`
 - **Description**: Deletes the post with the specified `{post_id}`.
 - **Permission Level**: Only the post's author can delete the specified post if they are logged in.
 
 **Headers**
-| Key          | Data Type  | Value                                                          |
-|---------------|-----------|----------------------------------------------------------------|
+| Key          | Data Type | Value                                                          |
+|--------------|-----------|----------------------------------------------------------------|
 | Authorization | String    | Set the value of this to the user's access/authentication token|
 
 
@@ -299,8 +283,8 @@ The comments endpoints provide information about comments available under a post
 The following defines parameters that are general to all or most of the endpoints under the post API
 
 **Path Parameters**
-| Parameter | Data Type    | Description                              | Required |
-|-----------|---------|------------------------------------------|----------|
+| Parameter | Data Type   | Description                              | Required |
+|-----------|-------------|------------------------------------------|----------|
 | post_id        | integer | The unique ID associated with each post. | Yes      |
 
 
@@ -308,7 +292,7 @@ The following defines parameters that are general to all or most of the endpoint
 The following table explains the most common response fields you will come across under the post api. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
 
 | Response field | Data Type | Description |
-|----------------|---------|---------------|
+|----------------|-----------|-------------|
 |message | string | Indicates the status of the request made. It can either be successful or failed |
 | data | object | Contains the resource requested |
 | data/**id** | integer | The unique ID of a comment |
@@ -320,8 +304,8 @@ The following table explains the most common response fields you will come acros
 The following endpoints will help you interact with the comment API.
 
 **Path Parameters**
-| Parameter | Data Type    | Description                              | Required |
-|-----------|---------|------------------------------------------|----------|
+| Parameter | Data Type | Description                              | Required |
+|-----------|-----------|------------------------------------------|----------|
 | post_id        | integer | The unique ID associated with each post. | Yes      |
 
 #### 1. Create Comment
@@ -331,8 +315,8 @@ The following endpoints will help you interact with the comment API.
 - **Permission Level**: Only logged in users can create comments
 
 **Headers**
-| Key          | Data Type  | Value                                                          |
-|---------------|-----------|----------------------------------------------------------------|
+| Key          | Data Type | Value                                                          |
+|--------------|-----------|----------------------------------------------------------------|
 | Authorization | String    | Set the value of this to the user's access/authentication token|
 
 **Request Body**:
@@ -345,7 +329,7 @@ The following endpoints will help you interact with the comment API.
 **Request Body Definition**
 
 | Parameter | Data Type | Description                      | Required |
-|-----------|------|----------------------------------|----------|
+|-----------|-----------|----------------------------------|----------|
 | comment | varchar | The user's comment text | Yes |
 
 

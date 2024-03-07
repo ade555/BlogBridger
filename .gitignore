@@ -9,3 +9,4 @@ twinetoken.txt
 dist/
 *egg-info/
 .vscode
+toc.txt

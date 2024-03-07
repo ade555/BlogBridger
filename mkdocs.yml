@@ -13,6 +13,9 @@ theme:
     - navigation.instant.progress
     - navigation.sections
     - navigation.tracking
+    - navigation.path
+    - navigation.top
+    - toc.follow
     - content.code.copy
 
   palette:
