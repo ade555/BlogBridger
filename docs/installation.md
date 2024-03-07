@@ -32,7 +32,7 @@ The following instructions will help you install Blog Bridger on your local syst
     }
     ```
 
-3. Include the following in your project level `urls.py` file:
+3. Include the following in your project-level `urls.py` file:
 
     ```python title="urls.py"
     path('api/posts/', include('blog_bridger_drf.urls')),

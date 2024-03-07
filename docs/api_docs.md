@@ -2,13 +2,13 @@
 
 ## Base URL: `api/posts/`
 ---
-## Posts
+## **Posts**
 
 The endpoints under the posts API allow users to Create, Update, Delete, and Retrieve posts.
 
 
-### Parameters (Posts)
-The following defines parameters that are general to all or most of the endpoints under the post API
+### **Parameters (Posts)**
+The following defines parameters that are general to all or most of the endpoints under the Post API
 
 **Path Parameters**
 
@@ -18,7 +18,7 @@ The following defines parameters that are general to all or most of the endpoint
 
 ---
 
-### General Response Schema (Posts)
+### **General Response Schema (Posts)**
 The following table explains the most common response fields you will come across under the post API. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
 
 | Response field | Data Type | Description |
@@ -37,10 +37,10 @@ The following table explains the most common response fields you will come acros
 | data/author/**email** | varchar | Author's unique email |
 | info | object or string | Usually an object, but can sometimes be a string. It returns information about failed requests |
 
-### Endpoints (Posts):
+### **Endpoints (Posts)**:
 The following endpoints are related to performing CRUD operations on post objects.
 
-#### 1. Create Post
+#### **1. Create Post**
 
 - **Endpoint**: `create/`
 - **HTTP Method**: `POST`
@@ -73,7 +73,6 @@ The following endpoints are related to performing CRUD operations on post object
 **Responses**:
 
 - `201 Created`: Indicates that you have successfully created a post. Here's what a typical response to the `create` endpoint should look like:
-
     ```json
     {
         "message": "successful",
@@ -93,18 +92,19 @@ The following endpoints are related to performing CRUD operations on post object
     }
     ```
 - `400 Bad Request`: Invalid input or malformed request. Check your request body and ensure you're not skipping any fields or violating any rules.
-- `401 Unauthorized`: You're unauthorized to perfrom the action. Ensure you include the authentication token in your request header.
-- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+- `401 Unauthorized`: You're unauthorized to perform the action. Ensure you include the authentication token in your request header.
+- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.
 
 ---
 
-#### 2. Get All Posts
+#### **2. Get All Posts**
 - **Endpoint**: `list/`
 - **HTTP Method**: `GET`
 - **Description**: Returns a list of available posts
 - **Permission Level**: Anyone can call this endpoint
 
 **Query String Parameters**
+
 | Parameter | Data Type | Description | Required |
 |-----------|-----------|-------------|----------|
 | author | string | Username of a specific author. Including this parameter will return all posts made by the user specified. | No |
@@ -112,38 +112,42 @@ The following endpoints are related to performing CRUD operations on post object
 
 
 **Example Request**
+
 ```bash
 http://127.0.0.1:8000/api/posts/list/?author=johnny
 ```
 
-**Response**
+**Example Response**
+
+```json
+{
+    "message": "successful",
+    "data": [
+        {
+            "id": 9,
+            "author": {
+                "id": 8,
+                "first_name": "ade",
+                "last_name": "Tom",
+                "username": "johnny",
+                "email": "tommm@ade.com"
+            },
+            "post_title": "New post again",
+            "post_body": "test body",
+            "created_at": "2024-02-15"
+        }
+    ]
+}
+```
+
 - `200 OK`: Indicates that the operation was successful. Here is the typical response body you should expect:
-    ```json
-    {
-        "message": "successful",
-        "data": [
-            {
-                "id": 9,
-                "author": {
-                    "id": 8,
-                    "first_name": "ade",
-                    "last_name": "Tom",
-                    "username": "johnny",
-                    "email": "tommm@ade.com"
-                },
-                "post_title": "New post again",
-                "post_body": "test body",
-                "created_at": "2024-02-15"
-            }
-        ]
-    }
-    ```
-You can get the response definition from the [general response schema](#general-response-schema) section.
-- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+You can get the response definition from the [general response schema](#general-response-schema-posts) section.
+
+- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.
 
 ---
 
-#### 3. Update Post
+#### **3. Update Post**
 
 - **Endpoint**: `{post_id}/`
 - **HTTP Method**: `PATCH`
@@ -188,12 +192,12 @@ You can get the response definition from the [general response schema](#general-
         }
     }
     ```
-- `401 Unauthorized`: You're unauthorized to perform this action. Ensure you have the right authrntication token. Only the author of a post can update it.
+- `401 Unauthorized`: You're unauthorized to perform this action. Ensure you have the right authentication token. Only the author of a post can update it.
 - `404 Not Found`: This means the post you're trying to update doesn't exist. Check the `{post_id}` parameter.
-- `5xx Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+- `5xx Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.
 ---
 
-#### 4. Retrieve Post
+#### **4. Retrieve Post**
 - **Endpoint**: `{post_id}/`
 - **HTTP Method**: `GET`
 - **Description**: Returns the details of the post with the specified `{post_id}`, including the author and comments under the post.
@@ -202,7 +206,8 @@ You can get the response definition from the [general response schema](#general-
 **Request Body**
 This endpoint does not require a request body.
 
-**Example Response**
+**Responses**
+
 - `200 OK`: You have successfully retrieved the post.
 ```json
 {
@@ -237,10 +242,10 @@ This endpoint does not require a request body.
 }
 ```
 - `404 Not Found`: This means the post you're trying to update doesn't exist. Check the `{post_id}` path parameter.
-- `5xx Internal server error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+- `5xx Internal server error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.
 
 **Response Definition**
-The post response is defined in the [general response schema](#general-response-schema). However this endpoint sees the addition of a new response field, `post_comments`. The schema for this is explained below:
+The post response is defined in the [general response schema](#general-response-schema). However, this endpoint sees the addition of a new response field, `post_comments`. The schema for this is explained below:
 
 | Response field | Data Type | Description |
 |----------------|---------|---------------|
@@ -255,13 +260,14 @@ The post response is defined in the [general response schema](#general-response-
 
 ---
 
-#### 5. Delete Post
+#### **5. Delete Post**
 - **Endpoint**: `{post_id}/`
 - **HTTP Method**: `DELETE`
 - **Description**: Deletes the post with the specified `{post_id}`.
 - **Permission Level**: Only the post's author can delete the specified post if they are logged in.
 
 **Headers**
+
 | Key          | Data Type | Value                                                          |
 |--------------|-----------|----------------------------------------------------------------|
 | Authorization | String    | Set the value of this to the user's access/authentication token|
@@ -270,26 +276,28 @@ The post response is defined in the [general response schema](#general-response-
 **Request Body**
 This endpoint does not require a request body.
 
-**Response**
+**Responses**
+
 - `204 No Content`: This indicates that the post has been deleted.
-- `404 Not Found`: This means there is not post with the specified `{post_id}`. Check the `{post_id}` path parameter.
-- `5xx Internal server error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+- `404 Not Found`: This means there is no post with the specified `{post_id}`. Check the `{post_id}` path parameter.
+- `5xx Internal server error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.
 ---
 
-## Comments
-The comments endpoints provide information about comments available under a post. It allows you to creat comments for a specific post and retrieve all the commenta available under a specific post.
+## **Comments**
+The comments endpoints provide information about comments available under a post. It allows you to create comments for a specific post and retrieve all the comments available under a specific post.
 
-### Parameters (Comments)
-The following defines parameters that are general to all or most of the endpoints under the post API
+### **Parameters (Comments)**
+The following defines parameters that are general to all or most of the endpoints under the Post API
 
 **Path Parameters**
+
 | Parameter | Data Type   | Description                              | Required |
 |-----------|-------------|------------------------------------------|----------|
 | post_id        | integer | The unique ID associated with each post. | Yes      |
 
 
-### General Response Schema (Comments)
-The following table explains the most common response fields you will come across under the post api. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
+### **General Response Schema (Comments)**
+The following table explains the most common response fields you will come across under the Post API. Unique response fields may be documented alongside the specific endpoint(s) they apply to.
 
 | Response field | Data Type | Description |
 |----------------|-----------|-------------|
@@ -300,21 +308,24 @@ The following table explains the most common response fields you will come acros
 | data/**comment** | string | The comment text. | 
 | data/**created_at** | date field | Indicates when the comment was made |
 
-### Endpoints (Comments):
+### **Endpoints (Comments)**:
 The following endpoints will help you interact with the comment API.
 
 **Path Parameters**
+
 | Parameter | Data Type | Description                              | Required |
 |-----------|-----------|------------------------------------------|----------|
 | post_id        | integer | The unique ID associated with each post. | Yes      |
 
-#### 1. Create Comment
+#### **1. Create Comment**
+
 - **Endpoint**: `{post_id}/comment`
 - **HTTP Method**: `POST`
 - **Description**: Creates a new comment under the post with the given `{post_id}`
-- **Permission Level**: Only logged in users can create comments
+- **Permission Level: Only logged-in users can create comments
 
 **Headers**
+
 | Key          | Data Type | Value                                                          |
 |--------------|-----------|----------------------------------------------------------------|
 | Authorization | String    | Set the value of this to the user's access/authentication token|
@@ -334,6 +345,7 @@ The following endpoints will help you interact with the comment API.
 
 
 **Responses**
+
 - `201 Created`: Indicates that you have created a response. Here is an example response:
     ```json
     {
@@ -354,20 +366,22 @@ The following endpoints will help you interact with the comment API.
     ```
 
 - `400 Bad Request`: Invalid input or malformed request. Check your request body and ensure you're not skipping any fields or violating any rules.
-- `401 Unauthorized`: You're unauthorized to perfrom the action. Ensure you include the authentication token in your request header.
-- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+- `401 Unauthorized`: You're unauthorized to perform the action. Ensure you include the authentication token in your request header.
+- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.
 
 ---
 
-#### 2. Get comments under a specific post
+#### **2. Get comments under a specific post**
+
 - **Endpoint**: `{post_id}/comment`
 - **HTTP Method**: `GET`
 - **Description**: Retrieves all the comments under a post with the specific `{post_id}`
 - **Permission Level**: Anyone can view comments
 
-**Request Body**: This request has no body
+**Request Body**: This request has no body.
 
 **Responses**
+
 - `200 OK`: Indicates that you have created a response. Here is an example response:
     ```json
     {
@@ -400,4 +414,4 @@ The following endpoints will help you interact with the comment API.
         ]
     }
     ```
-- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you are able to fix it.
+- `5XX Internal Server Error`: Unexpected server error. This shouldn't happen, so please raise an issue or make a PR if you can fix it.

@@ -45,7 +45,7 @@ The following instructions will help you install DRF Blog Bridger on your local 
         ]
     }
     ```
-3. Include the following in your project level `urls.py` file:
+3. Include the following in your project-level `urls.py` file:
     ```python
     path('api/posts/', include('blog_bridger_drf.urls')),
     ```
