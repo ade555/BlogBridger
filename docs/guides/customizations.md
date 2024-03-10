@@ -1,4 +1,4 @@
-The following settings will help you customize the `drf-blog-package` to suit your custom needs.
+The following settings will help you customize the `drf-blog-bridger` package to suit your custom needs.
 
 ## **BLOG_BRIDGER_POST**
 You can use this setting to define a custom model for blog posts in your project. The default model has the following fields:
