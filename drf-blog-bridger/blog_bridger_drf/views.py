@@ -4,9 +4,16 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import get_object_or_404
 
-from .models import Post, Comment
+# from .models import Comment
 from .serializers import PostSerializer, CommentSerializer, PostDetailSerializer, PostUpdateSerializer
 from .permissions import IsPostOwnerOrReadOnly
+
+from django.conf import settings
+from django.utils.module_loading import import_string
+from .default_settings import *
+
+Post = import_string(getattr(settings, 'BLOG_BRIDGER_POST'))
+Comment = import_string(getattr(settings, "BLOG_BRIDGER_COMMENT", BLOG_BRIDGER_COMMENT))
 
 class PostListCreateView(generics.GenericAPIView):
     serializer_class = PostSerializer
