@@ -1,6 +1,6 @@
-## Getting Started
+## Basic Setup
 
-The following instructions will help you install Blog Bridger on your local system and have it running.
+The following instructions will help you install Blog Bridger in your project and have it running.
 
 ### Prerequisites
 
@@ -38,4 +38,4 @@ The following instructions will help you install Blog Bridger on your local syst
     path('api/posts/', include('blog_bridger_drf.urls')),
     ```
 
-4. Run `python manage.py migrate` to migrate the models into your database. You should read the [API reference](api_docs.md) to understand how the endpoints work.
+4. Run `python manage.py migrate` to migrate the models into your database. Next, read the [API reference](api_docs.md) to understand how the endpoints work.

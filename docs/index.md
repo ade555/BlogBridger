@@ -1,51 +1,46 @@
-# DRF Blog Bridger(WIP)
+# Home
 
-## Introduction
+## **Introduction**
 
 DRF Blog Bridger is a simple tool that allows Django Rest Framework Developers to set up a simple blog API without worrying about the underlying code. The tool takes care of things like CRUD operations for blog posts, as well as the comment feature for each post.
 
-## Getting Started
+## **Quickstart**
+<div class="grid cards" markdown>
 
-The following instructions will help you install Blog Bridger on your local system and have it running.
+-   __Installation and Setup__
 
-### Prerequisites
+    ---
 
-- Python 3.8 or higher
-- Pip
-- Django Rest Framework
+    Learn how to set up a blog API with `drf-blog-bridger` in minutes.
 
-### Installation and Setup
-1. Install the package with:
+    [:octicons-arrow-right-24: Getting started](installation.md)
 
-    ```bash
-    pip install drf_blog_bridger
-    ```
+-    __Customizations__
 
-2. Include the following settings in your `settings.py` file:
+    ---
 
-    ```python title="settings.py"
+    Learn how to define and use your custom models for post and comment APIs.
 
-    INSTALLED_APPS = [
+    [:octicons-arrow-right-24: Customization](guides/customizations.md)
 
-        'blog_bridger_drf',
-        'rest_framework',
-    ]
+-   __API Reference__
 
-    REST_FRAMEWORK = {
-        'DEFAULT_PERMISSION_CLASSES':[
-            'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-        ]
-    }
-    ```
+    ---
 
-3. Include the following in your project-level `urls.py` file:
+    Read the API reference to understand how the endpoints work.
 
-    ```python title="urls.py"
-    path('api/posts/', include('blog_bridger_drf.urls')),
-    ```
+    [:octicons-arrow-right-24: API Reference](api_docs.md)
 
-4. Run `python manage.py migrate` to migrate the models into your database. You should read the [API reference](api_docs.md) to understand how the endpoints work.
+-    __Open Source, MIT__
 
-## Contributing
+    ---
+
+    DRF Blog Bridger is licensed under MIT and available on [GitHub](https://github.com/ade555/BlogBridger){:target="_blank"}
+
+    [:octicons-arrow-right-24: License](https://github.com/ade555/BlogBridger/blob/main/LICENSE){:target="_blank"}
+
+</div>
+
+## **Contributing**
 
 Contributions are welcome! Feel free to open a pull request right away.
