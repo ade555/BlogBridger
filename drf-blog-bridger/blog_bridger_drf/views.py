@@ -12,7 +12,7 @@ from django.conf import settings
 from django.utils.module_loading import import_string
 from .default_settings import *
 
-Post = import_string(getattr(settings, 'BLOG_BRIDGER_POST'))
+Post = import_string(getattr(settings, 'BLOG_BRIDGER_POST', BLOG_BRIDGER_POST))
 Comment = import_string(getattr(settings, "BLOG_BRIDGER_COMMENT", BLOG_BRIDGER_COMMENT))
 
 class PostListCreateView(generics.GenericAPIView):
