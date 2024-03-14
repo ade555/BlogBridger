@@ -37,11 +37,11 @@ Finally, run migrations to complete the installation:
 python manage.py migrate
 ```
 
-## Step 2: Create Your User Model and Serializers
+## Step 2: Create Your User Model and Serializer
 DRF Blog Bridger has authentication restrictions which means you need to have registered in order to perform certain operations such as creating posts. You should start by creating the a new app for users. Run this command in your CLI:
 
 ```bash
-python manage.py startproject users
+python manage.py startapp users
 ```
 After running the command above, add the following to your `INSTALLED_APPS` settings:
 ```python title="settings.py"
@@ -98,6 +98,9 @@ pip install djangorestframework-simplejwt
 After installing the Simple JWT package, add the following code to your settings file:
 
 ```python title="settings.py"
+INSTALLED_APPS = [
+    'rest_framework_simplejwt',
+]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -136,7 +139,7 @@ class Signup(generics.GenericAPIView):
 ???+ Note
     Since we are using REST Framework Simple JWT, there is no need to manually create a login view. However, if you have peculiar needs, feel free to create your custom login view.
 
-The above view will allow your users to create an account using the fields you specified in your serializer. Feel free to add more features such as email authentication to your view.
+The above view will let you send a POST request to create an account for users using the fields you specified in your serializer. Feel free to add more features such as email authentication to your view.
 
 ## Step 4: Create Url Patterns for Your Views
 URL patterns will enable your users to access interact with your API. These steps will show you how to create URL patterns for your login and signup views. 
@@ -147,7 +150,7 @@ URL patterns will enable your users to access interact with your API. These step
     from django.urls import path, include
 
     urlpatterns = [
-        path('api/users/', include("users.urls"),)
+        path('api/users/', include("users.urls")),
     ]
     ```
 
@@ -165,4 +168,64 @@ URL patterns will enable your users to access interact with your API. These step
     ]
     ```
 
-The code snippet above uses the views available in `rest_framework_simplejwt` 
+The code snippet above uses the views available in `rest_framework_simplejwt` to create a `login/` URL pattern and a `login/refresh/` URL pattern. 
+
+This means that whenever a user logs in to their account, they get a pair of tokens(access, and refresh tokens) to authenticate them. You can use the refresh token to create new access tokens. 
+
+For more information, read the [official documentation of Django REST Framework Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/index.html){target=_blank}.
+
+
+## Step 5: Create a User and Test the `drf-blog-bridger` Endpoints
+You can use a tool like [Postman](https://www.postman.com/){target=_blank} to access your endpoints. 
+
+1. Firstly, you have to create a user and log in with that user. Here's a sample POST request data to create a new user:
+    ```JSON
+    {
+        "first_name":"john",
+        "last_name":"doe",
+        "username":"johnny",
+        "email":"johndoe@email.com",
+        "password":"testing123"
+    }
+    ```
+    You should send your request to `localhost:8000/api/users/signup`.
+
+    <figure markdown="span">
+    ![](../assets/guides/creating-a-user-in-postman.png){ loading=lazy }
+    <figcaption>Creating a user with the signup endpoint</figcaption>
+    </figure>
+
+2. Next, use the username and password to login. The login fields might be different if you're usiing a custom user model. You can use this data to send a POST request to the login endpoint:
+    ```JSON
+    {
+        "username":"johnny",
+        "password":"testing123"
+    }
+    ```
+    <figure markdown="span">
+    ![](../assets/guides/accessing-the-login-endpoint-in-postman.png){ loading=lazy }
+    <figcaption>Accesing the login endpoint</figcaption>
+    </figure>
+
+3. Copy your acccess token and add it in the authorizarion header of your request. Since the API uses JWT, you should add your token as a bearer token. Postman provides information on [how to add bearer tokens](https://learning.postman.com/docs/sending-requests/authorization/authorization-types/#bearer-token){target=_blank}.
+
+    In the image below, the access token is included in the [Create Post request available in `drf-blog-bridger`](../api_docs.md/#1-create-post)
+    <figure markdown="span">
+    ![](../assets/guides/adding-access-token-in-postman.png){ loading=lazy }
+    <figcaption>Accesing the login endpoint</figcaption>
+    </figure>
+
+4. Now that you have an authenticated user, you will be able to access the `create/` endpoint in `drf-blog-bridger`. You can use this sample data to create your first post:
+
+    ```json
+    {
+        "post_title":"New post 3",
+        "post_body": "test body"
+    }
+    ```
+    <figure markdown="span">
+    ![](../assets/guides/create-a-new-post.png){ loading=lazy }
+    <figcaption>Creating a new post</figcaption>
+    </figure>
+## Conclusion
+In this tutorial, you have learned how to integrate the `drf-blog-bridger` package into a real-world project. You should continue integrating it into your project by accessing other endpoints defined in the [API reference](../api_docs.md).
