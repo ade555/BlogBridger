@@ -38,7 +38,7 @@ python manage.py migrate
 ```
 
 ## Step 2: Create Your User Model and Serializer
-DRF Blog Bridger has authentication restrictions which means you need to have registered in order to perform certain operations such as creating posts. You should start by creating the a new app for users. Run this command in your CLI:
+DRF Blog Bridger has authentication restrictions which means you need to be logged in to perform certain operations such as creating posts. You should start by creating a new app for users. Run this command in your CLI:
 
 ```bash
 python manage.py startapp users
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 ```
 For the purpose of this tutorial, you can stick to the default user model in Django. However, Django REST Framework allows you to [define a custom user model](https://www.codingforentrepreneurs.com/blog/how-to-create-a-custom-django-user-model/){:target=_blank} if you need one.
 
-After setting up your user model, create a new file called `seriaizers.py` within your users app. In your serializer file, you can create a serializer for your user like this:
+After setting up your user model, create a new file called `seriaizers.py` within your `users` app. In your serializer file, you can create a serializer for your user like this:
 
 ```python title="users/serializers.py"
 from rest_framework import serializers
@@ -86,7 +86,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['posts'] # populate this field as required
 ```
 
-## Step 3: Create Authetication Views for Your User Model
+## Step 3: Create Authentication Views for Your User Model
 Because `drf-blog-bridger` won't let users perform certain operations unless they authenticate themselves, you need to provide a way for your users to create accounts and log in to their accounts.
 
 An easy way to achieve this is to use Simple JWT to authenticate users. Start by installing it with this CLI command:
@@ -141,8 +141,8 @@ class Signup(generics.GenericAPIView):
 
 The above view will let you send a POST request to create an account for users using the fields you specified in your serializer. Feel free to add more features such as email authentication to your view.
 
-## Step 4: Create Url Patterns for Your Views
-URL patterns will enable your users to access interact with your API. These steps will show you how to create URL patterns for your login and signup views. 
+## Step 4: Create URL Patterns for Your Views
+URL patterns will enable your users to access and interact with your API. These steps will show you how to create URL patterns for your login and signup views. 
 
 1. Add a URL pattern to your project-level `urls.py` file:
 
@@ -195,7 +195,7 @@ You can use a tool like [Postman](https://www.postman.com/){target=_blank} to ac
     <figcaption>Creating a user with the signup endpoint</figcaption>
     </figure>
 
-2. Next, use the username and password to login. The login fields might be different if you're usiing a custom user model. You can use this data to send a POST request to the login endpoint:
+2. Next, use the username and password to log in. The login fields might be different if you're using a custom user model. You can use this data to send a POST request to the login endpoint:
     ```JSON
     {
         "username":"johnny",
@@ -207,7 +207,7 @@ You can use a tool like [Postman](https://www.postman.com/){target=_blank} to ac
     <figcaption>Accesing the login endpoint</figcaption>
     </figure>
 
-3. Copy your acccess token and add it in the authorizarion header of your request. Since the API uses JWT, you should add your token as a bearer token. Postman provides information on [how to add bearer tokens](https://learning.postman.com/docs/sending-requests/authorization/authorization-types/#bearer-token){target=_blank}.
+3. Copy your access token and add it to the authorization header of your request. Since the API uses JWT, you should add your token as a bearer token. Postman provides information on [how to add bearer tokens](https://learning.postman.com/docs/sending-requests/authorization/authorization-types/#bearer-token){target=_blank}.
 
     In the image below, the access token is included in the [Create Post request available in `drf-blog-bridger`](../api_docs.md/#1-create-post)
     <figure markdown="span">
