@@ -7,7 +7,7 @@ nav:
   
   # tutorial section
   - Tutorials:
-    # - guides/Getting-Started.md
+    - Getting Started: guides/Getting-Started.md
     - Customizations: 'guides/customizations.md'
 
 theme:
@@ -57,6 +57,8 @@ markdown_extensions:
   - pymdownx.snippets
   - attr_list
   - md_in_html
+  - admonition
   - pymdownx.superfences
+  - pymdownx.details
 
 site_url: https://drf-blog-bridger.readthedocs.io

@@ -39,3 +39,5 @@ The following instructions will help you install Blog Bridger in your project an
     ```
 
 4. Run `python manage.py migrate` to migrate the models into your database. Next, read the [API reference](api_docs.md) to understand how the endpoints work.
+
+5. Create views to authenticate your users.
