@@ -11,17 +11,17 @@ DRF Blog Bridger is a simple tool that allows Django Rest Framework Developers t
 
     ---
 
-    Learn how to set up a blog API with `drf-blog-bridger` in minutes.
+    Learn how to install and integrate `drf-blog-bridger` with your project in minutes.
 
-    [:octicons-arrow-right-24: Getting started](installation.md)
+    [:octicons-arrow-right-24: Installation and Setup](installation.md)
 
--    __Settings__
+-    __Getting Started__
 
     ---
 
-    Learn how to use custom settings like custom models for post and comment APIs.
+    Follow a quick tutorial to help you understand the inner workings of drf-blog-bridger.
 
-    [:octicons-arrow-right-24: Settings](guides/settings.md)
+    [:octicons-arrow-right-24: Getting Started](./guides/Getting-Started.md)
 
 -   __API Reference__
 
@@ -30,14 +30,15 @@ DRF Blog Bridger is a simple tool that allows Django Rest Framework Developers t
     Read the API reference to understand how the endpoints work.
 
     [:octicons-arrow-right-24: API Reference](api_docs.md)
-
--    __Open Source, MIT__
+    
+-    __Settings__
 
     ---
 
-    DRF Blog Bridger is licensed under MIT and available on [GitHub](https://github.com/ade555/BlogBridger){:target="_blank"}
+    Learn how to use custom settings like custom models for post and comment APIs.
 
-    [:octicons-arrow-right-24: License](https://github.com/ade555/BlogBridger/blob/main/LICENSE){:target="_blank"}
+    [:octicons-arrow-right-24: Settings](guides/settings.md)
+
 
 </div>
 
