@@ -28,7 +28,7 @@ The following table explains the most common response fields you will come acros
 | data/**id** | integer | Indicates the ID of the post requested or created |
 | data/**post_title** | char | Indicates the title of the post requested or created. Maximum length is 50 characters |
 | data/**post_body** | varchar | Indicates the body/content of the post requested or created |
-| data/**created_at** | date field | Indicates the date the post was created |
+| data/**created_at** | date field | Indicates the date the post was created. For example: **"2024-02-14"** |
 | data/**author** | object | Indicates the author associated with the post. The fields returned under this object generally depends on your user model |
 | data/author/**id** | integer | The unique ID associated with the author of a post |
 | data/author/**first_name** | char | Author's first name. The maximum length is 150 characters, unless specified otherwise in your user model |

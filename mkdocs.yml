@@ -8,7 +8,7 @@ nav:
   # tutorial section
   - Tutorials:
     - Getting Started: guides/Getting-Started.md
-    - Customizations: 'guides/customizations.md'
+    - Settings: 'guides/settings.md'
 
 theme:
   name: material

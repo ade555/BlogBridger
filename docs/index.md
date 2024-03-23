@@ -15,13 +15,13 @@ DRF Blog Bridger is a simple tool that allows Django Rest Framework Developers t
 
     [:octicons-arrow-right-24: Getting started](installation.md)
 
--    __Customizations__
+-    __Settings__
 
     ---
 
-    Learn how to define and use your custom models for post and comment APIs.
+    Learn how to use custom settings like custom models for post and comment APIs.
 
-    [:octicons-arrow-right-24: Customization](guides/customizations.md)
+    [:octicons-arrow-right-24: Settings](guides/settings.md)
 
 -   __API Reference__
 
